@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "518313498879",
+    "project_id": "lift-e5146",
+    "storage_bucket": "lift-e5146.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:518313498879:android:323a614d4b034cb2eb14ca",
+        "android_client_info": {
+          "package_name": "com.example.stockrecoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUuw6mm4d54afvFVgfc8nOsEBmrOfbayc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
