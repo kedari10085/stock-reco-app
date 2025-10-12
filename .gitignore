@@ -16,9 +16,7 @@ migrate_working_dir/
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
+# VS Code (uncomment if you want to include)
 #.vscode/
 
 # Flutter/Dart/Pub related
@@ -31,6 +29,9 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+android/app/build/
+ios/Flutter/App.framework
+flutter_export_environment.sh
 
 # Symbolication related
 app.*.symbols
@@ -38,20 +39,26 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
-# Android Studio will place build artifacts here
+# Android Studio build artifacts
 /android/app/debug
 /android/app/profile
 /android/app/release
 
-# Environment variables
+# Sensitive files (API keys, secrets, env vars)
 .env
-*.env
+.env.local
+.env.production
+.env.staging
+firebase.json  # If it contains sensitive config
+android/app/google-services.json  # Firebase config (consider if it has keys)
+ios/Runner/GoogleService-Info.plist  # iOS Firebase config
 
-# Firebase
-google-services.json
-GoogleService-Info.plist
-firebase_options.dart
+# Other common ignores
+*.log
+.DS_Store  # macOS
+Thumbs.db  # Windows
+pubspec.lock  # If you want to ignore lock file (optional)
 
-# API Keys
+# API Keys and Secrets
 **/secrets/
 **/keys/
