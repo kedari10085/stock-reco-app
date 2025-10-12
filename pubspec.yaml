@@ -1,0 +1,81 @@
+name: stock_reco_app
+description: "Professional stock recommendation app with Firebase and Material 3"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI & Theme
+  cupertino_icons: ^1.0.6
+  google_fonts: ^6.1.0
+  
+  # Firebase
+  firebase_core: ^3.6.0
+  cloud_firestore: ^5.4.4
+  firebase_auth: ^5.3.1
+  firebase_messaging: ^15.1.3
+  
+  # Notifications
+  flutter_local_notifications: ^17.2.3
+  
+  # Subscriptions & Payments
+  purchases_flutter: ^8.2.1
+  
+  # Animations
+  confetti: ^0.7.0
+  lottie: ^3.1.2
+
+  # Charts & Data Visualization
+  syncfusion_flutter_charts: ^31.1.23
+  
+  # Localization
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+  
+  # Device & System Info
+  device_info_plus: ^10.1.2
+  url_launcher: ^6.3.1
+  
+  # Network & API
+  dio: ^5.7.0
+  
+  # Live Data & Feeds
+  web_socket_channel: ^3.0.1
+  
+  # Networking
+  http: ^1.2.0
+  
+  # Storage & Cache
+  shared_preferences: ^2.2.2
+  hive_flutter: ^1.1.0
+  
+  # Configuration
+  flutter_dotenv: ^5.1.0
+  
+  # State Management
+  provider: ^6.1.1
+  
+  # Connectivity & Network
+  connectivity_plus: ^6.0.0
+  
+  # Routing & Deep Links
+  go_router: ^14.0.0
+  local_auth: ^2.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+    - assets/.env
