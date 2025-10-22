@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StockReco Pro - Web Platform</title>
+    <title>Lift - Professional Stock Recommendations</title>
+    <meta name="description" content="Get professional stock recommendations and market insights with Lift. Premium subscription service for smart investors.">
     <style>
         * {
             margin: 0;
@@ -274,13 +275,13 @@
 <body>
     <header class="header">
         <nav class="nav">
-            <div class="logo">📈 StockReco Pro Web</div>
+            <div class="logo">🚀 Lift</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#video-call">Video Call</a></li>
                 <li><a href="#recommendations">Stocks</a></li>
-                <li><a href="../privacy.html">Privacy</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
             </ul>
         </nav>
     </header>
@@ -289,8 +290,8 @@
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="container">
-                <h1>StockReco Pro Web Platform</h1>
-                <p>Professional stock recommendations with live video consultations</p>
+                <h1>Welcome to Lift</h1>
+                <p>Professional stock recommendations and market insights for smart investors</p>
                 <button class="cta-button" onclick="showAuthSection()">Get Started</button>
             </div>
         </section>
@@ -303,10 +304,10 @@
                     <h3>Live Stock Recommendations</h3>
                     <p>Get real-time stock picks and market analysis from our expert team.</p>
                 </div>
-                <div class="feature-card" onclick="showVideoCall()">
-                    <div class="feature-icon">📹</div>
-                    <h3>Video Consultations</h3>
-                    <p>One-on-one video calls with market experts for personalized guidance.</p>
+                <div class="feature-card" onclick="showQA()">
+                    <div class="feature-icon">💬</div>
+                    <h3>Expert Q&A</h3>
+                    <p>Ask questions and get answers from our team of market experts.</p>
                 </div>
                 <div class="feature-card" onclick="showPortfolio()">
                     <div class="feature-icon">📈</div>
@@ -335,31 +336,6 @@
             </div>
             <button class="cta-button" onclick="signIn()">Sign In</button>
             <button class="cta-button" onclick="signUp()" style="margin-left: 1rem;">Sign Up</button>
-        </section>
-
-        <!-- Video Call Section -->
-        <section id="video-call" class="container video-section hidden">
-            <h2>Video Consultation</h2>
-            <div id="videoStatus" class="status hidden"></div>
-            <div class="video-container">
-                <div class="video-box">
-                    <video id="localVideo" autoplay muted></video>
-                    <div style="position: absolute; bottom: 10px; left: 10px; color: white; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px;">You</div>
-                </div>
-                <div class="video-box">
-                    <video id="remoteVideo" autoplay></video>
-                    <div style="position: absolute; bottom: 10px; left: 10px; color: white; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px;">Expert</div>
-                </div>
-            </div>
-            <div class="video-controls">
-                <button class="cta-button" onclick="startCall()">Start Call</button>
-                <button class="cta-button" onclick="joinCall()">Join Call</button>
-                <button class="cta-button" onclick="endCall()" style="background: #dc3545;">End Call</button>
-            </div>
-            <div class="form-group">
-                <label for="callId">Call ID:</label>
-                <input type="text" id="callId" placeholder="Enter call ID to join">
-            </div>
         </section>
 
         <!-- Recommendations Section -->
@@ -701,7 +677,7 @@
 
         // Initialize app
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('StockReco Pro Web App initialized');
+            console.log('Lift Web App initialized');
         });
     </script>
 </body>
