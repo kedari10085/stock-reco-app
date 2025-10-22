@@ -1,38 +1,33 @@
 // Firebase Configuration for StockReco Pro Web App
-// GET THESE VALUES FROM: https://console.firebase.google.com/project/stock-reco-app/settings/general/web
+// Project: liftweb-17a0d - https://console.firebase.google.com/project/liftweb-17a0d/overview
 
 const firebaseConfig = {
-    // 1. API Key - Found in Firebase Console > Project Settings > General > Your apps > Web app > SDK setup and configuration
-    apiKey: "YOUR_API_KEY_HERE", // Copy from "apiKey" field
+    // API Key for liftweb-17a0d project
+    apiKey: "AIzaSyB3HsJn-1WB52I5SjbuiomvAIWKgjq8uwA",
 
-    // 2. Auth Domain - Auto-generated, should be your-project.firebaseapp.com
-    authDomain: "YOUR_PROJECT.firebaseapp.com", // Replace YOUR_PROJECT with your Firebase project ID
+    // Auth Domain for liftweb-17a0d project
+    authDomain: "liftweb-17a0d.firebaseapp.com",
 
-    // 3. Project ID - Found in Firebase Console > Project Settings > General > Project ID
-    projectId: "YOUR_PROJECT_ID", // Copy from "Project ID" field (e.g., "stock-reco-app")
+    // Project ID
+    projectId: "liftweb-17a0d",
 
-    // 4. Storage Bucket - Auto-generated, should be your-project.appspot.com
-    storageBucket: "YOUR_PROJECT.appspot.com",
+    // Storage Bucket
+    storageBucket: "liftweb-17a0d.firebasestorage.app",
 
-    // 5. Messaging Sender ID - Found in Firebase Console > Project Settings > Cloud Messaging > Sender ID
-    messagingSenderId: "YOUR_SENDER_ID",
+    // Messaging Sender ID
+    messagingSenderId: "687812437823",
 
-    // 6. App ID - Found in Firebase Console > Project Settings > General > Your apps > Web app > App ID
-    appId: "1:YOUR_PROJECT_NUMBER:web:YOUR_WEB_APP_ID",
+    // App ID
+    appId: "1:687812437823:web:06ef3ad0c811e32aa9d58a",
 
-    // 7. Measurement ID (Optional) - Found in Firebase Console > Analytics > Measurement ID
-    measurementId: "G-XXXXXXXXXX" // Optional: for Google Analytics
+    // Measurement ID for Google Analytics
+    measurementId: "G-B5S931DP6H"
 };
 
-// IMPORTANT SETUP STEPS:
-// 1. Go to Firebase Console: https://console.firebase.google.com/
-// 2. Select your project "stock-reco-app"
-// 3. Go to Project Settings > General > Your apps
-// 4. If no web app exists, click "Add app" > Web app (</>)
-// 5. Register your app and copy the config values above
-// 6. Enable Authentication: Authentication > Sign-in method > Email/Password (Enable)
-// 7. Enable Firestore: Firestore Database > Create database
-// 8. Copy security rules from below and deploy them
+// Firebase project is ready! Make sure to:
+// 1. Enable Authentication: Authentication > Sign-in method > Email/Password (Enable)
+// 2. Enable Firestore: Firestore Database > Create database
+// 3. Deploy the security rules below
 
 // Firestore Security Rules for your Firebase project:
 /*
@@ -43,34 +38,34 @@ service cloud.firestore {
     match /users/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
-    
+
     // Allow authenticated users to create and join video calls
     match /calls/{callId} {
       allow read, write: if request.auth != null;
-      
+
       // Allow access to call candidates (ICE candidates for WebRTC)
       match /candidates/{candidateId} {
         allow read, write: if request.auth != null;
       }
     }
-    
+
     // Stock recommendations - read access for authenticated users
     match /recommendations/{recId} {
       allow read: if request.auth != null;
-      allow write: if request.auth != null && 
+      allow write: if request.auth != null &&
         (request.auth.token.admin == true || request.auth.uid in resource.data.authorized_users);
     }
-    
+
     // User subscriptions and payments
     match /subscriptions/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
-    
+
     // Q&A system
     match /questions/{questionId} {
       allow read: if request.auth != null;
       allow create: if request.auth != null && request.auth.uid == resource.data.user_id;
-      allow update: if request.auth != null && 
+      allow update: if request.auth != null &&
         (request.auth.token.admin == true || request.auth.uid == resource.data.user_id);
     }
   }
