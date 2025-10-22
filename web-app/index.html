@@ -138,7 +138,70 @@
             box-shadow: 0 10px 30px rgba(123, 44, 191, 0.4);
         }
 
-        .video-section {
+        .pricing-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            border-color: #7B2CBF;
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #7B2CBF;
+            transform: scale(1.05);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #7B2CBF;
+            margin: 1rem 0;
+        }
+
+        .price.free {
+            color: #28a745;
+        }
+
+        .price-strike {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.5rem;
+        }
+
+        .early-user-badge {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 1rem 0;
+            display: inline-block;
+        }
+
+        .qa-section {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 2rem;
@@ -146,32 +209,20 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .video-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+        .question-card {
+            background: #f8f9fa;
+            padding: 1rem;
             margin: 1rem 0;
-        }
-
-        .video-box {
-            background: #000;
             border-radius: 10px;
-            aspect-ratio: 16/9;
-            position: relative;
-            overflow: hidden;
+            border-left: 4px solid #7B2CBF;
         }
 
-        .video-box video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .video-controls {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin: 1rem 0;
+        .answer-card {
+            background: #e8f5e8;
+            padding: 1rem;
+            margin: 0.5rem 0 0 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #28a745;
         }
 
         .recommendations-section {
@@ -264,10 +315,6 @@
             
             .nav-links {
                 display: none;
-            }
-
-            .video-container {
-                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -365,12 +412,89 @@
                 </div>
             </div>
         </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="container pricing-section hidden">
+            <h2>Choose Your Plan</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Free Plan</h3>
+                    <div class="price free">₹0</div>
+                    <p>Basic access to recommendations</p>
+                    <ul style="text-align: left; margin: 1rem 0;">
+                        <li>✅ Basic stock recommendations</li>
+                        <li>✅ Daily market updates</li>
+                        <li>✅ Community access</li>
+                        <li>❌ Premium analysis</li>
+                        <li>❌ Personal assistant</li>
+                    </ul>
+                    <button class="cta-button" onclick="selectPlan('free')">Get Started Free</button>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3>Premium Plan</h3>
+                    <div class="price-strike">₹299/month</div>
+                    <div class="price free">FREE Forever</div>
+                    <div class="early-user-badge">🎁 FREE for first 1000 users!</div>
+                    <ul style="text-align: left; margin: 1rem 0;">
+                        <li>✅ All Free features</li>
+                        <li>✅ Advanced stock analysis</li>
+                        <li>✅ Expert Q&A access</li>
+                        <li>✅ Portfolio tracking</li>
+                        <li>✅ Priority support</li>
+                    </ul>
+                    <button class="cta-button" onclick="selectPlan('premium')">Claim FREE Premium</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Personal Assistant</h3>
+                    <div class="price">₹10,000<span style="font-size: 1rem;">/month</span></div>
+                    <p>One-on-one market guidance</p>
+                    <ul style="text-align: left; margin: 1rem 0;">
+                        <li>✅ Everything in Premium</li>
+                        <li>✅ Personal market advisor</li>
+                        <li>✅ Direct WhatsApp access</li>
+                        <li>✅ Custom portfolio analysis</li>
+                        <li>✅ Priority support</li>
+                    </ul>
+                    <button class="cta-button" onclick="selectPlan('personal_assistant')">Get Personal Assistant</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q&A Section -->
+        <section id="qa" class="container qa-section hidden">
+            <h2>Ask Our Experts</h2>
+            <div class="form-group">
+                <label for="questionText">Your Question:</label>
+                <input type="text" id="questionText" placeholder="Ask about any stock or market trend...">
+            </div>
+            <button class="cta-button" onclick="submitQuestion()">Submit Question</button>
+            
+            <div id="qaList">
+                <div class="question-card">
+                    <strong>Q:</strong> Should I buy RELIANCE at current levels?
+                    <div class="answer-card">
+                        <strong>Expert Answer:</strong> RELIANCE is showing strong fundamentals. Current levels are good for long-term investment with target of ₹2,650.
+                    </div>
+                </div>
+                <div class="question-card">
+                    <strong>Q:</strong> What's your view on IT sector?
+                    <div class="answer-card">
+                        <strong>Expert Answer:</strong> IT sector is recovering well. TCS and Infosys are good picks for the next quarter.
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+
+    <!-- Razorpay SDK -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
     <script>
         // Firebase Configuration (using your liftweb-17a0d project)
@@ -389,18 +513,21 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        // WebRTC Configuration
-        const configuration = {
-            iceServers: [
-                { urls: 'stun:stun.l.google.com:19302' },
-                { urls: 'stun:stun1.l.google.com:19302' }
-            ]
+        // Razorpay Configuration
+        const razorpayConfig = {
+            keyId: 'rzp_test_YOUR_KEY_ID', // Replace with your actual Razorpay key
+            keySecret: 'YOUR_KEY_SECRET', // Replace with your actual secret
+            companyName: 'Lift',
+            companyLogo: 'https://your-logo-url.com/logo.png', // Optional
+            theme: {
+                color: '#7B2CBF'
+            }
         };
 
-        let localStream;
-        let remoteStream;
-        let peerConnection;
-        let currentCallId;
+        // Global variables
+        let currentUser = null;
+        let userSubscriptionStatus = 'free';
+        let userNumber = null;
 
         // UI Functions
         function showAuthSection() {
@@ -408,15 +535,19 @@
             document.getElementById('auth').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function showVideoCall() {
+        function showQA() {
             if (auth.currentUser) {
-                document.getElementById('video-call').classList.remove('hidden');
-                document.getElementById('video-call').scrollIntoView({ behavior: 'smooth' });
-                initializeMedia();
+                document.getElementById('qa').classList.remove('hidden');
+                document.getElementById('qa').scrollIntoView({ behavior: 'smooth' });
             } else {
-                showStatus('videoStatus', 'Please sign in first to access video calls', 'error');
+                showStatus('authStatus', 'Please sign in first to access Q&A', 'error');
                 showAuthSection();
             }
+        }
+
+        function showPricing() {
+            document.getElementById('pricing').classList.remove('hidden');
+            document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
         }
 
         function showRecommendations() {
@@ -451,7 +582,7 @@
                 showStatus('authStatus', 'Account created successfully!', 'success');
                 setTimeout(() => {
                     document.getElementById('auth').classList.add('hidden');
-                    showVideoCall();
+                    showRecommendations();
                 }, 2000);
             } catch (error) {
                 showStatus('authStatus', error.message, 'error');
@@ -472,198 +603,185 @@
                 showStatus('authStatus', 'Signed in successfully!', 'success');
                 setTimeout(() => {
                     document.getElementById('auth').classList.add('hidden');
-                    showVideoCall();
+                    showRecommendations();
                 }, 2000);
             } catch (error) {
                 showStatus('authStatus', error.message, 'error');
             }
         }
 
-        // WebRTC Functions
-        async function initializeMedia() {
-            try {
-                localStream = await navigator.mediaDevices.getUserMedia({
-                    video: true,
-                    audio: true
-                });
-                document.getElementById('localVideo').srcObject = localStream;
-                showStatus('videoStatus', 'Camera and microphone ready', 'success');
-            } catch (error) {
-                showStatus('videoStatus', 'Error accessing camera/microphone: ' + error.message, 'error');
-            }
-        }
-
-        async function startCall() {
+        // Razorpay Payment Functions
+        async function selectPlan(planType) {
             if (!auth.currentUser) {
-                showStatus('videoStatus', 'Please sign in first', 'error');
+                showStatus('authStatus', 'Please sign in first to select a plan', 'error');
+                showAuthSection();
                 return;
             }
 
-            try {
-                // Create new call document
-                const callDoc = db.collection('calls').doc();
-                currentCallId = callDoc.id;
-                document.getElementById('callId').value = currentCallId;
-
-                // Create peer connection
-                peerConnection = new RTCPeerConnection(configuration);
-                
-                // Add local stream to peer connection
-                localStream.getTracks().forEach(track => {
-                    peerConnection.addTrack(track, localStream);
-                });
-
-                // Handle remote stream
-                peerConnection.ontrack = event => {
-                    const [remoteStream] = event.streams;
-                    document.getElementById('remoteVideo').srcObject = remoteStream;
-                };
-
-                // Handle ICE candidates
-                peerConnection.onicecandidate = event => {
-                    if (event.candidate) {
-                        callDoc.collection('candidates').add({
-                            candidate: event.candidate.candidate,
-                            sdpMid: event.candidate.sdpMid,
-                            sdpMLineIndex: event.candidate.sdpMLineIndex,
-                        });
-                    }
-                };
-
-                // Create offer
-                const offer = await peerConnection.createOffer();
-                await peerConnection.setLocalDescription(offer);
-
-                // Save offer to Firestore
-                await callDoc.set({
-                    offer: {
-                        type: offer.type,
-                        sdp: offer.sdp,
-                    },
-                    createdBy: auth.currentUser.uid,
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                });
-
-                // Listen for answer
-                callDoc.onSnapshot(snapshot => {
-                    const data = snapshot.data();
-                    if (data?.answer && !peerConnection.currentRemoteDescription) {
-                        const answer = new RTCSessionDescription(data.answer);
-                        peerConnection.setRemoteDescription(answer);
-                    }
-                });
-
-                // Listen for remote ICE candidates
-                callDoc.collection('candidates').onSnapshot(snapshot => {
-                    snapshot.docChanges().forEach(change => {
-                        if (change.type === 'added') {
-                            const candidate = new RTCIceCandidate(change.doc.data());
-                            peerConnection.addIceCandidate(candidate);
-                        }
-                    });
-                });
-
-                showStatus('videoStatus', `Call started! Share this ID: ${currentCallId}`, 'success');
-            } catch (error) {
-                showStatus('videoStatus', 'Error starting call: ' + error.message, 'error');
-            }
-        }
-
-        async function joinCall() {
-            const callId = document.getElementById('callId').value;
-            if (!callId) {
-                showStatus('videoStatus', 'Please enter a call ID', 'error');
-                return;
-            }
-
-            if (!auth.currentUser) {
-                showStatus('videoStatus', 'Please sign in first', 'error');
-                return;
-            }
-
-            try {
-                const callDoc = db.collection('calls').doc(callId);
-                const callSnapshot = await callDoc.get();
-
-                if (!callSnapshot.exists) {
-                    showStatus('videoStatus', 'Call not found', 'error');
-                    return;
-                }
-
-                // Create peer connection
-                peerConnection = new RTCPeerConnection(configuration);
-                
-                // Add local stream
-                localStream.getTracks().forEach(track => {
-                    peerConnection.addTrack(track, localStream);
-                });
-
-                // Handle remote stream
-                peerConnection.ontrack = event => {
-                    const [remoteStream] = event.streams;
-                    document.getElementById('remoteVideo').srcObject = remoteStream;
-                };
-
-                // Handle ICE candidates
-                peerConnection.onicecandidate = event => {
-                    if (event.candidate) {
-                        callDoc.collection('candidates').add({
-                            candidate: event.candidate.candidate,
-                            sdpMid: event.candidate.sdpMid,
-                            sdpMLineIndex: event.candidate.sdpMLineIndex,
-                        });
-                    }
-                };
-
-                // Set remote description (offer)
-                const offer = callSnapshot.data().offer;
-                await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
-
-                // Create answer
-                const answer = await peerConnection.createAnswer();
-                await peerConnection.setLocalDescription(answer);
-
-                // Save answer to Firestore
-                await callDoc.update({
-                    answer: {
-                        type: answer.type,
-                        sdp: answer.sdp,
-                    }
-                });
-
-                // Listen for remote ICE candidates
-                callDoc.collection('candidates').onSnapshot(snapshot => {
-                    snapshot.docChanges().forEach(change => {
-                        if (change.type === 'added') {
-                            const candidate = new RTCIceCandidate(change.doc.data());
-                            peerConnection.addIceCandidate(candidate);
-                        }
-                    });
-                });
-
-                currentCallId = callId;
-                showStatus('videoStatus', 'Joined call successfully!', 'success');
-            } catch (error) {
-                showStatus('videoStatus', 'Error joining call: ' + error.message, 'error');
-            }
-        }
-
-        function endCall() {
-            if (peerConnection) {
-                peerConnection.close();
-                peerConnection = null;
-            }
+            let amount, description, planName;
             
-            if (localStream) {
-                localStream.getTracks().forEach(track => track.stop());
+            switch(planType) {
+                case 'free':
+                    // Free plan - just update user status
+                    await updateUserSubscription('free', null);
+                    showStatus('authStatus', 'Free plan activated!', 'success');
+                    return;
+                    
+                case 'premium':
+                    // Check if user is in first 1000 (early user)
+                    const userNum = await getUserNumber();
+                    if (userNum <= 1000) {
+                        await updateUserSubscription('premium', null);
+                        showStatus('authStatus', 'FREE Premium activated for early user!', 'success');
+                        return;
+                    } else {
+                        amount = 29900; // ₹299 in paise
+                        description = 'Lift Premium Plan - Monthly';
+                        planName = 'Premium';
+                    }
+                    break;
+                    
+                case 'personal_assistant':
+                    amount = 1000000; // ₹10,000 in paise
+                    description = 'Lift Personal Assistant Plan - Monthly';
+                    planName = 'Personal Assistant';
+                    break;
             }
 
-            document.getElementById('localVideo').srcObject = null;
-            document.getElementById('remoteVideo').srcObject = null;
-            document.getElementById('callId').value = '';
-            currentCallId = null;
+            // Show confirmation dialog for paid plans
+            if (confirm(`Proceed with ${planName} plan payment of ₹${amount/100}?`)) {
+                initiateRazorpayPayment(amount, description, planType);
+            }
+        }
 
-            showStatus('videoStatus', 'Call ended', 'success');
+        function initiateRazorpayPayment(amount, description, planType) {
+            const options = {
+                key: razorpayConfig.keyId,
+                amount: amount,
+                currency: 'INR',
+                name: razorpayConfig.companyName,
+                description: description,
+                image: razorpayConfig.companyLogo,
+                handler: function(response) {
+                    handlePaymentSuccess(response, planType, amount);
+                },
+                prefill: {
+                    name: auth.currentUser.displayName || '',
+                    email: auth.currentUser.email,
+                },
+                theme: razorpayConfig.theme,
+                modal: {
+                    ondismiss: function() {
+                        showStatus('authStatus', 'Payment cancelled', 'error');
+                    }
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        }
+
+        async function handlePaymentSuccess(response, planType, amount) {
+            try {
+                // Save payment record to Firestore
+                await db.collection('payments').add({
+                    user_id: auth.currentUser.uid,
+                    payment_id: response.razorpay_payment_id,
+                    amount: amount,
+                    currency: 'INR',
+                    status: 'success',
+                    subscription_type: planType,
+                    created_at: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                // Update user subscription status
+                await updateUserSubscription(planType, response.razorpay_payment_id);
+
+                showStatus('authStatus', `Payment successful! ${planType} plan activated.`, 'success');
+                
+                // Refresh the page to show updated status
+                setTimeout(() => {
+                    location.reload();
+                }, 2000);
+                
+            } catch (error) {
+                console.error('Error processing payment:', error);
+                showStatus('authStatus', 'Payment successful but activation failed. Please contact support.', 'error');
+            }
+        }
+
+        async function updateUserSubscription(planType, paymentId) {
+            const userRef = db.collection('users').doc(auth.currentUser.uid);
+            
+            const updateData = {
+                subscription_status: planType,
+                updated_at: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            if (paymentId) {
+                updateData.payment_id = paymentId;
+                updateData.premium_start_date = firebase.firestore.FieldValue.serverTimestamp();
+            }
+
+            await userRef.set(updateData, { merge: true });
+            userSubscriptionStatus = planType;
+        }
+
+        async function getUserNumber() {
+            try {
+                const userDoc = await db.collection('users').doc(auth.currentUser.uid).get();
+                if (userDoc.exists) {
+                    return userDoc.data().user_number || 9999;
+                }
+                return 9999; // Default to high number if not found
+            } catch (error) {
+                console.error('Error getting user number:', error);
+                return 9999;
+            }
+        }
+
+        // Q&A Functions
+        async function submitQuestion() {
+            const questionText = document.getElementById('questionText').value.trim();
+            if (!questionText) {
+                alert('Please enter a question');
+                return;
+            }
+
+            if (!auth.currentUser) {
+                showStatus('authStatus', 'Please sign in to ask questions', 'error');
+                showAuthSection();
+                return;
+            }
+
+            try {
+                await db.collection('questions').add({
+                    user_id: auth.currentUser.uid,
+                    user_email: auth.currentUser.email,
+                    question: questionText,
+                    status: 'pending',
+                    created_at: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                document.getElementById('questionText').value = '';
+                alert('Question submitted successfully! Our experts will answer soon.');
+                
+            } catch (error) {
+                console.error('Error submitting question:', error);
+                alert('Error submitting question. Please try again.');
+            }
+        }
+
+        function askQuestion(stockSymbol) {
+            document.getElementById('questionText').value = `What's your view on ${stockSymbol}?`;
+            showQA();
+        }
+
+        // Auth Functions
+        function signOut() {
+            auth.signOut().then(() => {
+                location.reload();
+            });
         }
 
         // Auth state observer
