@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockReco Pro - Web Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #7B2CBF;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #7B2CBF;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 20px;
+        }
+
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .feature-card h3 {
+            color: #7B2CBF;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #7B2CBF;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #5a1e8a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(123, 44, 191, 0.4);
+        }
+
+        .video-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .video-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .video-box {
+            background: #000;
+            border-radius: 10px;
+            aspect-ratio: 16/9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .recommendations-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .stock-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #7B2CBF;
+            transition: transform 0.3s;
+        }
+
+        .stock-card:hover {
+            transform: translateX(5px);
+        }
+
+        .stock-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .price-negative {
+            color: #dc3545;
+        }
+
+        .auth-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .form-group {
+            margin: 1rem 0;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #7B2CBF;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .status {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+
+            .video-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">📈 StockReco Pro Web</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#video-call">Video Call</a></li>
+                <li><a href="#recommendations">Stocks</a></li>
+                <li><a href="../privacy.html">Privacy</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>StockReco Pro Web Platform</h1>
+                <p>Professional stock recommendations with live video consultations</p>
+                <button class="cta-button" onclick="showAuthSection()">Get Started</button>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="container">
+            <div class="features-grid">
+                <div class="feature-card" onclick="showRecommendations()">
+                    <div class="feature-icon">📊</div>
+                    <h3>Live Stock Recommendations</h3>
+                    <p>Get real-time stock picks and market analysis from our expert team.</p>
+                </div>
+                <div class="feature-card" onclick="showVideoCall()">
+                    <div class="feature-icon">📹</div>
+                    <h3>Video Consultations</h3>
+                    <p>One-on-one video calls with market experts for personalized guidance.</p>
+                </div>
+                <div class="feature-card" onclick="showPortfolio()">
+                    <div class="feature-icon">📈</div>
+                    <h3>Portfolio Tracking</h3>
+                    <p>Track your investments and performance with detailed analytics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Real-time Alerts</h3>
+                    <p>Get instant notifications for market movements and opportunities.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Authentication Section -->
+        <section id="auth" class="container auth-section hidden">
+            <h2>Login to StockReco Pro</h2>
+            <div id="authStatus" class="status hidden"></div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button class="cta-button" onclick="signIn()">Sign In</button>
+            <button class="cta-button" onclick="signUp()" style="margin-left: 1rem;">Sign Up</button>
+        </section>
+
+        <!-- Video Call Section -->
+        <section id="video-call" class="container video-section hidden">
+            <h2>Video Consultation</h2>
+            <div id="videoStatus" class="status hidden"></div>
+            <div class="video-container">
+                <div class="video-box">
+                    <video id="localVideo" autoplay muted></video>
+                    <div style="position: absolute; bottom: 10px; left: 10px; color: white; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px;">You</div>
+                </div>
+                <div class="video-box">
+                    <video id="remoteVideo" autoplay></video>
+                    <div style="position: absolute; bottom: 10px; left: 10px; color: white; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 5px;">Expert</div>
+                </div>
+            </div>
+            <div class="video-controls">
+                <button class="cta-button" onclick="startCall()">Start Call</button>
+                <button class="cta-button" onclick="joinCall()">Join Call</button>
+                <button class="cta-button" onclick="endCall()" style="background: #dc3545;">End Call</button>
+            </div>
+            <div class="form-group">
+                <label for="callId">Call ID:</label>
+                <input type="text" id="callId" placeholder="Enter call ID to join">
+            </div>
+        </section>
+
+        <!-- Recommendations Section -->
+        <section id="recommendations" class="container recommendations-section hidden">
+            <h2>Today's Stock Recommendations</h2>
+            <div id="stockList">
+                <div class="stock-card">
+                    <h4>RELIANCE</h4>
+                    <div class="stock-price">₹2,456.75 <span style="font-size: 0.8rem; color: #28a745;">+2.3%</span></div>
+                    <p><strong>Recommendation:</strong> BUY</p>
+                    <p><strong>Target:</strong> ₹2,650</p>
+                    <p><strong>Stop Loss:</strong> ₹2,350</p>
+                </div>
+                <div class="stock-card">
+                    <h4>TCS</h4>
+                    <div class="stock-price">₹3,789.20 <span style="font-size: 0.8rem; color: #dc3545;">-1.2%</span></div>
+                    <p><strong>Recommendation:</strong> HOLD</p>
+                    <p><strong>Target:</strong> ₹4,000</p>
+                    <p><strong>Stop Loss:</strong> ₹3,600</p>
+                </div>
+                <div class="stock-card">
+                    <h4>HDFC BANK</h4>
+                    <div class="stock-price">₹1,678.90 <span style="font-size: 0.8rem; color: #28a745;">+0.8%</span></div>
+                    <p><strong>Recommendation:</strong> BUY</p>
+                    <p><strong>Target:</strong> ₹1,750</p>
+                    <p><strong>Stop Loss:</strong> ₹1,620</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Firebase Configuration (using your existing project)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBkZGQGPm8lRvKjKvKjKvKjKvKjKvKjKvK", // Replace with your actual API key
+            authDomain: "stock-reco-app.firebaseapp.com", // Replace with your domain
+            projectId: "stock-reco-app", // Replace with your project ID
+            storageBucket: "stock-reco-app.appspot.com",
+            messagingSenderId: "123456789012",
+            appId: "1:123456789012:web:abcdef123456789012345"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // WebRTC Configuration
+        const configuration = {
+            iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' },
+                { urls: 'stun:stun1.l.google.com:19302' }
+            ]
+        };
+
+        let localStream;
+        let remoteStream;
+        let peerConnection;
+        let currentCallId;
+
+        // UI Functions
+        function showAuthSection() {
+            document.getElementById('auth').classList.remove('hidden');
+            document.getElementById('auth').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showVideoCall() {
+            if (auth.currentUser) {
+                document.getElementById('video-call').classList.remove('hidden');
+                document.getElementById('video-call').scrollIntoView({ behavior: 'smooth' });
+                initializeMedia();
+            } else {
+                showStatus('videoStatus', 'Please sign in first to access video calls', 'error');
+                showAuthSection();
+            }
+        }
+
+        function showRecommendations() {
+            document.getElementById('recommendations').classList.remove('hidden');
+            document.getElementById('recommendations').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showPortfolio() {
+            alert('Portfolio tracking feature coming soon!');
+        }
+
+        function showStatus(elementId, message, type) {
+            const statusEl = document.getElementById(elementId);
+            statusEl.textContent = message;
+            statusEl.className = `status ${type}`;
+            statusEl.classList.remove('hidden');
+            setTimeout(() => statusEl.classList.add('hidden'), 5000);
+        }
+
+        // Authentication Functions
+        async function signUp() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                showStatus('authStatus', 'Please enter email and password', 'error');
+                return;
+            }
+
+            try {
+                await auth.createUserWithEmailAndPassword(email, password);
+                showStatus('authStatus', 'Account created successfully!', 'success');
+                setTimeout(() => {
+                    document.getElementById('auth').classList.add('hidden');
+                    showVideoCall();
+                }, 2000);
+            } catch (error) {
+                showStatus('authStatus', error.message, 'error');
+            }
+        }
+
+        async function signIn() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                showStatus('authStatus', 'Please enter email and password', 'error');
+                return;
+            }
+
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+                showStatus('authStatus', 'Signed in successfully!', 'success');
+                setTimeout(() => {
+                    document.getElementById('auth').classList.add('hidden');
+                    showVideoCall();
+                }, 2000);
+            } catch (error) {
+                showStatus('authStatus', error.message, 'error');
+            }
+        }
+
+        // WebRTC Functions
+        async function initializeMedia() {
+            try {
+                localStream = await navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: true
+                });
+                document.getElementById('localVideo').srcObject = localStream;
+                showStatus('videoStatus', 'Camera and microphone ready', 'success');
+            } catch (error) {
+                showStatus('videoStatus', 'Error accessing camera/microphone: ' + error.message, 'error');
+            }
+        }
+
+        async function startCall() {
+            if (!auth.currentUser) {
+                showStatus('videoStatus', 'Please sign in first', 'error');
+                return;
+            }
+
+            try {
+                // Create new call document
+                const callDoc = db.collection('calls').doc();
+                currentCallId = callDoc.id;
+                document.getElementById('callId').value = currentCallId;
+
+                // Create peer connection
+                peerConnection = new RTCPeerConnection(configuration);
+                
+                // Add local stream to peer connection
+                localStream.getTracks().forEach(track => {
+                    peerConnection.addTrack(track, localStream);
+                });
+
+                // Handle remote stream
+                peerConnection.ontrack = event => {
+                    const [remoteStream] = event.streams;
+                    document.getElementById('remoteVideo').srcObject = remoteStream;
+                };
+
+                // Handle ICE candidates
+                peerConnection.onicecandidate = event => {
+                    if (event.candidate) {
+                        callDoc.collection('candidates').add({
+                            candidate: event.candidate.candidate,
+                            sdpMid: event.candidate.sdpMid,
+                            sdpMLineIndex: event.candidate.sdpMLineIndex,
+                        });
+                    }
+                };
+
+                // Create offer
+                const offer = await peerConnection.createOffer();
+                await peerConnection.setLocalDescription(offer);
+
+                // Save offer to Firestore
+                await callDoc.set({
+                    offer: {
+                        type: offer.type,
+                        sdp: offer.sdp,
+                    },
+                    createdBy: auth.currentUser.uid,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                });
+
+                // Listen for answer
+                callDoc.onSnapshot(snapshot => {
+                    const data = snapshot.data();
+                    if (data?.answer && !peerConnection.currentRemoteDescription) {
+                        const answer = new RTCSessionDescription(data.answer);
+                        peerConnection.setRemoteDescription(answer);
+                    }
+                });
+
+                // Listen for remote ICE candidates
+                callDoc.collection('candidates').onSnapshot(snapshot => {
+                    snapshot.docChanges().forEach(change => {
+                        if (change.type === 'added') {
+                            const candidate = new RTCIceCandidate(change.doc.data());
+                            peerConnection.addIceCandidate(candidate);
+                        }
+                    });
+                });
+
+                showStatus('videoStatus', `Call started! Share this ID: ${currentCallId}`, 'success');
+            } catch (error) {
+                showStatus('videoStatus', 'Error starting call: ' + error.message, 'error');
+            }
+        }
+
+        async function joinCall() {
+            const callId = document.getElementById('callId').value;
+            if (!callId) {
+                showStatus('videoStatus', 'Please enter a call ID', 'error');
+                return;
+            }
+
+            if (!auth.currentUser) {
+                showStatus('videoStatus', 'Please sign in first', 'error');
+                return;
+            }
+
+            try {
+                const callDoc = db.collection('calls').doc(callId);
+                const callSnapshot = await callDoc.get();
+
+                if (!callSnapshot.exists) {
+                    showStatus('videoStatus', 'Call not found', 'error');
+                    return;
+                }
+
+                // Create peer connection
+                peerConnection = new RTCPeerConnection(configuration);
+                
+                // Add local stream
+                localStream.getTracks().forEach(track => {
+                    peerConnection.addTrack(track, localStream);
+                });
+
+                // Handle remote stream
+                peerConnection.ontrack = event => {
+                    const [remoteStream] = event.streams;
+                    document.getElementById('remoteVideo').srcObject = remoteStream;
+                };
+
+                // Handle ICE candidates
+                peerConnection.onicecandidate = event => {
+                    if (event.candidate) {
+                        callDoc.collection('candidates').add({
+                            candidate: event.candidate.candidate,
+                            sdpMid: event.candidate.sdpMid,
+                            sdpMLineIndex: event.candidate.sdpMLineIndex,
+                        });
+                    }
+                };
+
+                // Set remote description (offer)
+                const offer = callSnapshot.data().offer;
+                await peerConnection.setRemoteDescription(new RTCSessionDescription(offer));
+
+                // Create answer
+                const answer = await peerConnection.createAnswer();
+                await peerConnection.setLocalDescription(answer);
+
+                // Save answer to Firestore
+                await callDoc.update({
+                    answer: {
+                        type: answer.type,
+                        sdp: answer.sdp,
+                    }
+                });
+
+                // Listen for remote ICE candidates
+                callDoc.collection('candidates').onSnapshot(snapshot => {
+                    snapshot.docChanges().forEach(change => {
+                        if (change.type === 'added') {
+                            const candidate = new RTCIceCandidate(change.doc.data());
+                            peerConnection.addIceCandidate(candidate);
+                        }
+                    });
+                });
+
+                currentCallId = callId;
+                showStatus('videoStatus', 'Joined call successfully!', 'success');
+            } catch (error) {
+                showStatus('videoStatus', 'Error joining call: ' + error.message, 'error');
+            }
+        }
+
+        function endCall() {
+            if (peerConnection) {
+                peerConnection.close();
+                peerConnection = null;
+            }
+            
+            if (localStream) {
+                localStream.getTracks().forEach(track => track.stop());
+            }
+
+            document.getElementById('localVideo').srcObject = null;
+            document.getElementById('remoteVideo').srcObject = null;
+            document.getElementById('callId').value = '';
+            currentCallId = null;
+
+            showStatus('videoStatus', 'Call ended', 'success');
+        }
+
+        // Auth state observer
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                console.log('User signed in:', user.email);
+            } else {
+                console.log('User signed out');
+            }
+        });
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('StockReco Pro Web App initialized');
+        });
+    </script>
+</body>
+</html>
