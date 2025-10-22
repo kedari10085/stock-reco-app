@@ -59,6 +59,10 @@ ios/Runner/GoogleService-Info.plist  # iOS Firebase config
 Thumbs.db  # Windows
 pubspec.lock  # If you want to ignore lock file (optional)
 
+# Test projects and unrelated code
+stock-market-india-test/
+y
+
 # API Keys and Secrets
 **/secrets/
 **/keys/

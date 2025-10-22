@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockReco Pro - Professional Stock Recommendations</title>
+    <meta name="description" content="Get professional stock recommendations and market insights with StockReco Pro. Premium subscription service for smart investors.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #7B2CBF;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #7B2CBF;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #7B2CBF;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(123, 44, 191, 0.4);
+        }
+
+        .features {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing {
+            background: #f8f9fa;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #7B2CBF;
+            transform: scale(1.05);
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #7B2CBF;
+            margin: 1rem 0;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #7B2CBF;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">📈 StockReco Pro</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+                <li><a href="terms.html">Terms</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Professional Stock Recommendations</h1>
+                <p>Get expert stock picks, market insights, and personalized investment guidance</p>
+                <a href="#pricing" class="cta-button">Start Your Journey</a>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem; color: #333;">Why Choose StockReco Pro?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Daily Recommendations</h3>
+                        <p>Get carefully researched stock recommendations every day from our expert analysts.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📈</div>
+                        <h3>Performance Tracking</h3>
+                        <p>Track your portfolio performance with detailed analytics and insights.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <h3>Expert Q&A</h3>
+                        <p>Ask questions and get answers from our team of market experts.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔔</div>
+                        <h3>Real-time Alerts</h3>
+                        <p>Never miss important market movements with instant push notifications.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👨‍💼</div>
+                        <h3>Personal Assistant</h3>
+                        <p>Get one-on-one guidance from dedicated market professionals.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Secure & Reliable</h3>
+                        <p>Your data is protected with enterprise-grade security measures.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing">
+            <div class="container">
+                <h2 style="margin-bottom: 2rem; font-size: 2.5rem; color: #333;">Choose Your Plan</h2>
+                <div class="pricing-cards">
+                    <div class="pricing-card">
+                        <h3>Free</h3>
+                        <div class="price">₹0</div>
+                        <p>Basic access to recommendations</p>
+                        <ul style="text-align: left; margin: 1rem 0;">
+                            <li>✅ Limited daily recommendations</li>
+                            <li>✅ Basic performance tracking</li>
+                            <li>❌ No expert Q&A</li>
+                            <li>❌ No personal assistant</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-card featured">
+                        <h3>Premium</h3>
+                        <div class="price">₹299<span style="font-size: 1rem;">/month</span></div>
+                        <p>Full access to all features</p>
+                        <ul style="text-align: left; margin: 1rem 0;">
+                            <li>✅ Unlimited daily recommendations</li>
+                            <li>✅ Advanced performance tracking</li>
+                            <li>✅ Expert Q&A access</li>
+                            <li>✅ Push notifications</li>
+                            <li>✅ Email updates</li>
+                        </ul>
+                        <div style="background: #7B2CBF; color: white; padding: 0.5rem; border-radius: 20px; margin-top: 1rem;">
+                            🎉 FREE for first 1000 users!
+                        </div>
+                    </div>
+                    <div class="pricing-card">
+                        <h3>Personal Assistant</h3>
+                        <div class="price">₹10,000<span style="font-size: 1rem;">/month</span></div>
+                        <p>One-on-one market guidance</p>
+                        <ul style="text-align: left; margin: 1rem 0;">
+                            <li>✅ Everything in Premium</li>
+                            <li>✅ Personal market advisor</li>
+                            <li>✅ Direct WhatsApp/call access</li>
+                            <li>✅ Custom portfolio analysis</li>
+                            <li>✅ Priority support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="refund.html">Refund Policy</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            <p>&copy; 2025 StockReco Pro. All rights reserved.</p>
+            <p>Professional stock recommendations and market insights platform.</p>
+        </div>
+    </footer>
+</body>
+</html>
