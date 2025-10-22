@@ -1,16 +1,38 @@
 // Firebase Configuration for StockReco Pro Web App
-// Replace these values with your actual Firebase project configuration
+// GET THESE VALUES FROM: https://console.firebase.google.com/project/stock-reco-app/settings/general/web
 
 const firebaseConfig = {
-    // Get these values from Firebase Console > Project Settings > General > Your apps > Web app
-    apiKey: "AIzaSyBkZGQGPm8lRvKjKvKjKvKjKvKjKvKjKvK", // Replace with your actual API key
-    authDomain: "stock-reco-app.firebaseapp.com", // Replace with your domain
-    projectId: "stock-reco-app", // Replace with your project ID
-    storageBucket: "stock-reco-app.appspot.com",
-    messagingSenderId: "123456789012",
-    appId: "1:123456789012:web:abcdef123456789012345",
+    // 1. API Key - Found in Firebase Console > Project Settings > General > Your apps > Web app > SDK setup and configuration
+    apiKey: "YOUR_API_KEY_HERE", // Copy from "apiKey" field
+
+    // 2. Auth Domain - Auto-generated, should be your-project.firebaseapp.com
+    authDomain: "YOUR_PROJECT.firebaseapp.com", // Replace YOUR_PROJECT with your Firebase project ID
+
+    // 3. Project ID - Found in Firebase Console > Project Settings > General > Project ID
+    projectId: "YOUR_PROJECT_ID", // Copy from "Project ID" field (e.g., "stock-reco-app")
+
+    // 4. Storage Bucket - Auto-generated, should be your-project.appspot.com
+    storageBucket: "YOUR_PROJECT.appspot.com",
+
+    // 5. Messaging Sender ID - Found in Firebase Console > Project Settings > Cloud Messaging > Sender ID
+    messagingSenderId: "YOUR_SENDER_ID",
+
+    // 6. App ID - Found in Firebase Console > Project Settings > General > Your apps > Web app > App ID
+    appId: "1:YOUR_PROJECT_NUMBER:web:YOUR_WEB_APP_ID",
+
+    // 7. Measurement ID (Optional) - Found in Firebase Console > Analytics > Measurement ID
     measurementId: "G-XXXXXXXXXX" // Optional: for Google Analytics
 };
+
+// IMPORTANT SETUP STEPS:
+// 1. Go to Firebase Console: https://console.firebase.google.com/
+// 2. Select your project "stock-reco-app"
+// 3. Go to Project Settings > General > Your apps
+// 4. If no web app exists, click "Add app" > Web app (</>)
+// 5. Register your app and copy the config values above
+// 6. Enable Authentication: Authentication > Sign-in method > Email/Password (Enable)
+// 7. Enable Firestore: Firestore Database > Create database
+// 8. Copy security rules from below and deploy them
 
 // Firestore Security Rules for your Firebase project:
 /*
